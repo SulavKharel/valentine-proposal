@@ -7,12 +7,12 @@ export default function ValentineProposal() {
 
   const noMessages = [
     { emoji: "🥺", text: "Are you sure? Please reconsider..." },
-    { emoji: "😢", text: "But... but... I really like you!" },
-    { emoji: "🥹", text: "Maybe you clicked the wrong button?" },
-    { emoji: "😭", text: "My heart is breaking... try again?" },
-    { emoji: "💔", text: "Please? I promise to be the best Valentine!" },
-    { emoji: "🙏", text: "One more chance? Pretty please?" },
-    { emoji: "😿", text: "I'll be sad forever... unless you say yes!" },
+    { emoji: "😢", text: "But... but... my 30 minutes of making this" },
+    { emoji: "🥰", text: "Maybe you clicked the wrong button?" },
+    { emoji: "🤨", text: "try again?" },
+    { emoji: "😐", text: "I am not gonna ask again!" },
+    { emoji: "🙏", text: "Deal? Pretty please?" },
+    { emoji: "🙄", text: "WTF is taking so long" },
     { emoji: "🌹", text: "I even got you virtual roses! Say yes!" },
     { emoji: "💕", text: "Come on, you know you want to say yes!" },
     { emoji: "🎀", text: "The Yes button is calling your name!" },
@@ -22,10 +22,12 @@ export default function ValentineProposal() {
     setNoCount(noCount + 1);
     
     // Make the No button run away
-    const randomX = Math.random() * 80 - 40;
-    const randomY = Math.random() * 80 - 40;
+    const randomX = Math.random() * 180 - 40;
+    const randomY = Math.random() * 150 - 40;
+    const opacity = Math.max(0.002, 1 - (noCount * 0.1));
     setNoButtonStyle({
       transform: `translate(${randomX}px, ${randomY}px)`,
+      opacity: opacity,
       transition: 'transform 0.3s ease'
     });
   };
@@ -49,15 +51,15 @@ export default function ValentineProposal() {
             ❤️ 🥰 💑 ❤️
           </div>
           <p className="text-2xl text-white mt-8 drop-shadow-md">
-            Best Valentine's Day ever! 🌹
+            Best Valentine's Day ever!(Again) 🌹
           </p>
         </div>
       </div>
     );
   }
 
-  const currentMessage = noMessages[Math.min(noCount, noMessages.length - 1)];
-  const yesButtonSize = Math.min(150 + noCount * 20, 350);
+  const currentMessage = noMessages[noCount % noMessages.length];
+  const yesButtonSize = Math.min(150 + noCount * 20, 450);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-red-100 to-pink-300 p-4">
